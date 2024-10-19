@@ -332,17 +332,19 @@ void des_encrypt(unsigned char block[8], unsigned char key[8], unsigned char out
     // and left_block.
     for (unsigned char i=0; i<16; i+=2) {
 
-        // Generate key (even round)
-        des_key_shift(key_halves_a, key_halves_b, key_shift_amounts[i]);
-        permute(key_halves_b, permuted_choice_2, subkey, 6);
+        if (i == 0) {
+            // Generate key (even round)
+            des_key_shift(key_halves_a, key_halves_b, key_shift_amounts[i]);
+            permute(key_halves_b, permuted_choice_2, subkey, 6);
+        }
 
         // Round calculation (even round)
         des_feistel(right_block, subkey, fiestel_output);
         xor(fiestel_output, left_block, left_block, 4);
 
         // Generate key (odd round)
-        des_key_shift(key_halves_b, key_halves_a, key_shift_amounts[i+1]);
-        permute(key_halves_a, permuted_choice_2, subkey, 6);
+        // des_key_shift(key_halves_b, key_halves_a, key_shift_amounts[i+1]);
+        // permute(key_halves_a, permuted_choice_2, subkey, 6);
 
         // Round calculation (odd round)
         des_feistel(left_block, subkey, fiestel_output);

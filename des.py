@@ -73,9 +73,12 @@ def dsa_encrypt(block, key, decrypt=False):
     log("    Right Half =", bits_to_pretty(key_right))
     for i in range(nrounds):
         shift_amount = KEY_SHIFT_AMOUNTS[i]
-        bittools.left_shift(key_left, shift_amount)
-        bittools.left_shift(key_right, shift_amount)
-        subkey = bittools.permute(key_left + key_right, PERMUTED_CHOICE_2)
+
+        if i == 0:
+            bittools.left_shift(key_left, shift_amount)
+            bittools.left_shift(key_right, shift_amount)
+            subkey = bittools.permute(key_left + key_right, PERMUTED_CHOICE_2)
+
         subkeys.append(subkey)
 
         log("")

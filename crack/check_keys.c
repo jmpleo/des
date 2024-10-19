@@ -210,7 +210,8 @@ inline static void zip_64_bit(const uint64_t input[64], uint64_t output[64]) {
 
 static void des_feistel(const uint64_t block_bits[64], const uint64_t key_bits[56], uint64_t output[32], const int roundnum) {
 
-    const unsigned char* key_bit_order = key_bit_orders[roundnum];
+    //const unsigned char* key_bit_order = key_bit_orders[roundnum];
+    const unsigned char* key_bit_order = key_bit_orders[0];
 
     // Either 0 (left block) or 32 (right block) depending on the round
     #define BLOCK_START(roundnum) ( (roundnum+1)%2 * 32 )

@@ -312,7 +312,8 @@ void des_sboxes(const uint64_t block_bits[64], uint64_t output_bits[32]) {
 
 void des_feistel(const uint64_t block_bits[64], uint64_t key_bits[64], uint64_t output[32], int roundnum) {
 
-    const unsigned char* key_bit_order = key_bit_orders[roundnum];
+    //const unsigned char* key_bit_order = key_bit_orders[roundnum];
+    const unsigned char* key_bit_order = key_bit_orders[0];
     const unsigned char* input_order = feistel_input_orders[roundnum%2];
 
     uint64_t temp[64];
