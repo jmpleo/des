@@ -16,7 +16,7 @@
 // Define plaintext_zipped, ciphertext_zipped, and NUM_CHUNK_BITS
 #include "input.h"
 
-#include "sbox.h"  // s-boxes: s0 to s7
+#include "../include/sbox.h"  // s-boxes: s0 to s7
 
 static const unsigned char feistel_output_order[32] = {
      8, 16, 22, 30, 12, 27,  1, 17,
@@ -211,7 +211,7 @@ inline static void zip_64_bit(const uint64_t input[64], uint64_t output[64]) {
 static void des_feistel(const uint64_t block_bits[64], const uint64_t key_bits[56], uint64_t output[32], const int roundnum) {
 
     //const unsigned char* key_bit_order = key_bit_orders[roundnum];
-    const unsigned char* key_bit_order = key_bit_orders[0];
+    const unsigned char* key_bit_order = key_bit_orders[15];
 
     // Either 0 (left block) or 32 (right block) depending on the round
     #define BLOCK_START(roundnum) ( (roundnum+1)%2 * 32 )
@@ -334,6 +334,9 @@ static void check_key_chunk(const uint64_t plaintext_zipped[64], const uint64_t 
 
         // Increment keys_zipped
         for (int j=56-NUM_CHUNK_BITS; ; j++) {
+        //for (int j, k = 0; k < 48; ++k) {
+            // key bit for 1 round
+            //j = key_bit_orders[15][k];
             keys_zipped[j] ^= 0xffffffffffffffffLL;
             if (keys_zipped[j]) {
                 break;
