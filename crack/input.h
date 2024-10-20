@@ -1,4 +1,4 @@
-#define NUM_CHUNK_BITS 56
+#define NUM_CHUNK_BITS 28
 
 static uint64_t plaintext_zipped[64] = {
 
@@ -24,22 +24,22 @@ static uint64_t plaintext_zipped[64] = {
 
 static uint64_t ciphertext_zipped[64] = {
 
-    // Unprocessed ciphertext: 0xa7c7eedcad6a0e30
-    0x0000000000000000LL, 0x0000000000000000LL, 0xffffffffffffffffLL, 0x0000000000000000LL,
-    0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL, 0x0000000000000000LL,
-    0xffffffffffffffffLL, 0x0000000000000000LL, 0x0000000000000000LL, 0x0000000000000000LL,
-    0xffffffffffffffffLL, 0x0000000000000000LL, 0x0000000000000000LL, 0x0000000000000000LL,
-    0x0000000000000000LL, 0xffffffffffffffffLL, 0x0000000000000000LL, 0xffffffffffffffffLL,
-    0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL,
-    0x0000000000000000LL, 0x0000000000000000LL, 0x0000000000000000LL, 0xffffffffffffffffLL,
+    // Unprocessed ciphertext: 0x4f26297eb3dc8fed
+    0xffffffffffffffffLL, 0x0000000000000000LL, 0xffffffffffffffffLL, 0x0000000000000000LL,
+    0xffffffffffffffffLL, 0x0000000000000000LL, 0x0000000000000000LL, 0xffffffffffffffffLL,
     0x0000000000000000LL, 0x0000000000000000LL, 0xffffffffffffffffLL, 0xffffffffffffffffLL,
-    0x0000000000000000LL, 0x0000000000000000LL, 0x0000000000000000LL, 0xffffffffffffffffLL,
-    0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL,
+    0xffffffffffffffffLL, 0x0000000000000000LL, 0x0000000000000000LL, 0x0000000000000000LL,
+    0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL, 0x0000000000000000LL,
     0xffffffffffffffffLL, 0x0000000000000000LL, 0xffffffffffffffffLL, 0xffffffffffffffffLL,
+    0xffffffffffffffffLL, 0xffffffffffffffffLL, 0x0000000000000000LL, 0xffffffffffffffffLL,
     0x0000000000000000LL, 0xffffffffffffffffLL, 0x0000000000000000LL, 0xffffffffffffffffLL,
-    0x0000000000000000LL, 0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL,
-    0xffffffffffffffffLL, 0xffffffffffffffffLL, 0x0000000000000000LL, 0x0000000000000000LL,
-    0x0000000000000000LL, 0xffffffffffffffffLL, 0xffffffffffffffffLL, 0x0000000000000000LL,
-    0x0000000000000000LL, 0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL
+    0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL,
+    0x0000000000000000LL, 0x0000000000000000LL, 0x0000000000000000LL, 0x0000000000000000LL,
+    0xffffffffffffffffLL, 0x0000000000000000LL, 0x0000000000000000LL, 0xffffffffffffffffLL,
+    0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL, 0x0000000000000000LL,
+    0xffffffffffffffffLL, 0xffffffffffffffffLL, 0xffffffffffffffffLL, 0x0000000000000000LL,
+    0xffffffffffffffffLL, 0xffffffffffffffffLL, 0x0000000000000000LL, 0xffffffffffffffffLL,
+    0x0000000000000000LL, 0xffffffffffffffffLL, 0x0000000000000000LL, 0xffffffffffffffffLL,
+    0xffffffffffffffffLL, 0x0000000000000000LL, 0xffffffffffffffffLL, 0xffffffffffffffffLL
 
 };

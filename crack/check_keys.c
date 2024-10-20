@@ -328,15 +328,23 @@ static void check_key_64(const uint64_t plaintext_zipped[64], const uint64_t cip
 }
 
 static void check_key_chunk(const uint64_t plaintext_zipped[64], const uint64_t ciphertext_zipped[64], uint64_t keys_zipped[56]) {
-    for (int i=0; i<pow(2, (NUM_CHUNK_BITS-6)); i++) {
+
+    uint64_t temp[64];
+
+    unsigned int sorted_subkey1_bits[48] = {
+        0, 1, 2, 3, 4, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 41, 42, 44, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55
+    };
+
+    for (uint64_t i = 0; i < (1ULL << (NUM_CHUNK_BITS - 6)); ++i) {
 
         check_key_64(plaintext_zipped, ciphertext_zipped, keys_zipped);
 
         // Increment keys_zipped
-        for (int j=56-NUM_CHUNK_BITS; ; j++) {
-        //for (int j, k = 0; k < 48; ++k) {
+        //for (int j=56-NUM_CHUNK_BITS; ; j++) {
+        for (int j, k = 0; k < 48; ++k) {
             // key bit for 1 round
-            //j = key_bit_orders[15][k];
+            j = sorted_subkey1_bits[k];
+            if (j < 56 - NUM_CHUNK_BITS) continue;
             keys_zipped[j] ^= 0xffffffffffffffffLL;
             if (keys_zipped[j]) {
                 break;
@@ -371,12 +379,12 @@ int main(int argc, char** argv) {
     // Set the most significant (56-NUM_CHUNK_BITS) based on argv[1].  Each
     // char in argv[1] is '0' or '1' specifying what that bit for every key
     // will be set to.
-    if (argv[1][56-NUM_CHUNK_BITS] != '\0') {
+    if (argc != 2 || strlen(argv[1]) + NUM_CHUNK_BITS != 56) {
         printf("Incorrect Argument Size!\n");
         return -1;
     }
-    for (int i=0; i<56-NUM_CHUNK_BITS; i++) {
-        keys_zipped[i] = (argv[1][i]-48) * 0xffffffffffffffffLL;
+    for (int i = 0; i < 56 - NUM_CHUNK_BITS; i++) {
+        keys_zipped[i] = (argv[1][i] - 48) * 0xffffffffffffffffLL;
     }
 
     check_key_chunk(plaintext_zipped, ciphertext_zipped, keys_zipped);
